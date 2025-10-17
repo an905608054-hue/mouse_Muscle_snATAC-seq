@@ -16,7 +16,7 @@ names(inputFiles)
 ArrowFiles <- createArrowFiles(
   inputFiles = inputFiles,
   sampleNames = name,
-  filterTSS = 8, 
+  filterTSS = 6, 
   filterFrags = 1000, 
   addTileMat = TRUE,
   addGeneScoreMat = TRUE
