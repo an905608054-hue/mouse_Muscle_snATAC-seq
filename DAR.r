@@ -1,3 +1,4 @@
+#####R
 library(RColorBrewer)
 library(dplyr)
 library(ggplot2)
@@ -49,4 +50,21 @@ peak_CapEC_do <- peak_CapEC[peak_CapEC$color == "Down-Regulated",]
 peak_CapEC_do <- data.frame(peak_CapEC_do)
 peak_CapEC_do <- peak_CapEC_do[,c(1,3,4)]
 write.table(peak_CapEC_do,"./98.Figure4/00.bed/Peak_CapEC_down.bed",sep = "\t",row.names = F,col.names = F)
+write.csv(mone@peakSet,"98.Figure4/00.bed/Trend_All_celltype_peakset.csv")
+
+#####Python
+anno = pd.read_csv("98.Figure4/00.bed/Trend_All_celltype_peakset.csv")
+anno = anno[['seqnames','start','end','nearestGene']]
+anno['peak'] = anno.apply(lambda row:f"{row['seqnames']}-{row['start']}-{row['end']}",axis=1)
+dMuSC_down = pd.read_csv("98.Figure4/00.bed/CapEC_p2g_down.bed",sep="\t",names=["seqnames", "start", "end", "strand"])
+dMuSC_down['peak'] = dMuSC_down.apply(lambda row: f"{row['seqnames']}-{row['start']}-{row['end']}", axis=1)
+merged_dMuSC_down = pd.merge(anno, dMuSC_down, on='peak', how='inner')
+merged_dMuSC_down = merged_dMuSC_down.drop_duplicates(subset='nearestGene', keep='first')
+merged_dMuSC_down.to_csv("98.Figure4/00.bed/CapEC_p2g_down_annotation.csv")
+dMuSC_up = pd.read_csv("98.Figure4/00.bed/CapEC_p2g_up.bed",sep="\t",names=["seqnames", "start", "end", "strand"])
+dMuSC_up['peak'] = dMuSC_up.apply(lambda row: f"{row['seqnames']}-{row['start']}-{row['end']}", axis=1)
+merged_dMuSC_up = pd.merge(anno, dMuSC_up, on='peak', how='inner')
+merged_dMuSC_up = merged_dMuSC_up.drop_duplicates(subset='nearestGene', keep='first')
+merged_dMuSC_up.to_csv("98.Figure4/00.bed/CapEC_p2g_up_annotation.csv")
+
 
