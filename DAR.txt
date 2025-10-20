@@ -34,7 +34,7 @@ marker_CapEC <- getMarkerFeatures(
   testMethod = "wilcoxon",
   bias = c("TSSEnrichment", "log10(nFrags)"),
   useGroups = "CapEC_Old",
-  bgdGroups = "CapEC_Adult"
+  bgdGroups = "CapEC_Young"
 )
 pma_CapEC <- markerPlot(seMarker = marker_CapEC, name = "CapEC_Old", cutOff = "Pval <= 0.05 & abs(Log2FC) >= 0.5", plotAs = "MA")
 pma_CapEC
@@ -63,6 +63,7 @@ dMuSC_up['peak'] = dMuSC_up.apply(lambda row: f"{row['seqnames']}-{row['start']}
 merged_dMuSC_up = pd.merge(anno, dMuSC_up, on='peak', how='inner')
 merged_dMuSC_up = merged_dMuSC_up.drop_duplicates(subset='nearestGene', keep='first')
 merged_dMuSC_up.to_csv("98.Figure4/00.bed/CapEC_p2g_up_annotation.csv")
+
 
 
 
