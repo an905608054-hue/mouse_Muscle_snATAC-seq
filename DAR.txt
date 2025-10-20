@@ -25,10 +25,7 @@ mone <- addReproduciblePeakSet(
 )
 mone <- addPeakMatrix(mone,force = T)
 mone <- addMotifAnnotations(mone, motifSet = "cisbp", name = "Motif",force = T)
-pal = c("qMuSC_Adult"="#A15DBA","qMuSC_Old"="#2fa1dd","dMuSC_Adult"="#A15DBA","dMuSC_Old"="#2fa1dd",
-        "ArtEC_Adult"="#A15DBA","ArtEC_Old"="#2fa1dd","CapEC_Adult"="#A15DBA","CapEC_Old"="#2fa1dd","VenEC_Adult"="#A15DBA","VenEC_Old"="#2fa1dd",
-        "Gpc3+ FAP_Adult"="#A15DBA","Gpc3+ FAP_Old"="#2fa1dd","Mme+ FAP_Adult"="#A15DBA","Mme+ FAP_Old"="#2fa1dd","Cd55+ FAP_Adult"="#A15DBA","Cd55+ FAP_Old"="#2fa1dd",
-        "B cell_Adult"="#A15DBA","B cell_Old"="#2fa1dd","Macrophage_Adult"="#A15DBA","Macrophage_Old"="#2fa1dd","T cell_Adult"="#A15DBA","T cell_Old"="#2fa1dd")
+pal = c("CapEC_Young"="#A15DBA","CapEC_Old"="#2fa1dd")
 
 marker_CapEC <- getMarkerFeatures(
   ArchRProj = mone, 
@@ -66,5 +63,6 @@ dMuSC_up['peak'] = dMuSC_up.apply(lambda row: f"{row['seqnames']}-{row['start']}
 merged_dMuSC_up = pd.merge(anno, dMuSC_up, on='peak', how='inner')
 merged_dMuSC_up = merged_dMuSC_up.drop_duplicates(subset='nearestGene', keep='first')
 merged_dMuSC_up.to_csv("98.Figure4/00.bed/CapEC_p2g_up_annotation.csv")
+
 
 
