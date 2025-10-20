@@ -7,5 +7,5 @@ This repository contains key R scripts for the analysis of  snATAC-seq and snRNA
 |----------------------|-------------------------------------------------------------------------|
 | `QC+clustering.r`    | Performs quality control (QC) on snATAC-seq data and conducts cell clustering. |
 | `pseudotime.r`       | Infers pseudotemporal ordering of Type IIb myonuclei to capture developmental or dynamic processes. |
-| `DAR.r`              | Identifies Differentially Accessible Regions (DARs) from ATAC-seq data. |
+| `DAR.txt`              | Identifies Differentially Accessible Regions (DARs) from ATAC-seq data. |
 | `Integrate_RNA_ATAC.r` | Integrates snATAC-seq and snRNA-seq datasets to uncover multi-omics relationships. |
